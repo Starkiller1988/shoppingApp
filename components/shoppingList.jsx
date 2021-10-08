@@ -1,4 +1,4 @@
-import './';
+import shoppingList from '../components/shoppingList.css';
 
 export const ListItem = ({ shoppingItem, onListItemUpdate }) => {
   return (
