@@ -1,29 +1,40 @@
-import React, {useEffect} from "react";
-import ReactDOM from 'react-dom'
-import './index.css'
-import shoppingList from '../src/'
+import { Component } from "react";
+class App extends Component {
+  
+  constructor() {
+    super();
+    this.state = {
+      data: null,
+    }
+    this.getData();
+  }
 
-const shoppingList = () => {
-  useEffect(() => {
-    const url="https://fetch-me.vercel.app/shopping-list.json";
+  getData() {
+    let data = fetch("https://fetch-me.vercel.app/shopping-list.json").then(
+      (resp) => {
+        resp.json().then((res) => {
+          console.log(res);
+          this.setState({data:res})
+        })
+      })
+  }
 
-const fetchData = async() => {
-try{
-  const responce = await fetch(url);
-  const json = await response.json();
-  console.log(json);
-} catch (error) {
-console.log("error", error);
+  render() {
+    return ( 
+    <div> {
+      
+      this.state.data ?
+      this.state.data.map((shoppingitem)=>
+      <span>{shoppingitem.name}</span>
+    )
+      :
+      <h3>Wait... data is fetching</h3>
+
+
+      }
+    </div>
+    )
+  }
 }
-};
-
-fetchData();
-
-  },[]);
-
-  return <div></div>;
-};
-
-
 
 export default App;
