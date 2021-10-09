@@ -1,9 +1,9 @@
-import shoppingList from '../components/shoppingList.css';
+import '../components/shoppingList.css';
 
-export const ListItem = ({ shoppingItem, onListItemUpdate }) => {
+export const ShoppingList = ({name, category}) => {
   return (
-    <span className="list-item" onClick={() => onListItemUpdate(shoppingItem)}>
-      {shoppingItem.name}
+    <span className="list-item">
+        {name}
     </span>
   );
 };
